@@ -37,10 +37,10 @@ Status ListInsert(SqList * L, int i, ElemType e){
         L->elem = newbase;
         L->listsize = L->listsize + LISTINCREMENT;
     }
-    if(L->length == 0){
-        L->elem[0] = e;
-        L->length = L->length + 1;
-    }
+//    if(L->length == 0){
+//        L->elem[0] = e;
+//        L->length = L->length + 1;
+//    }
     ElemType * q = &(L->elem[i-1]);  //顺序表中第i个元素的地址
     for(ElemType * p = & (L->elem[L->length - 1]); p >= q; p-- ){
         * (p + 1) = * p;
@@ -138,7 +138,7 @@ Status MergeList(SqList La, SqList Lb, SqList * Lc){
             j++;
         }
     }
-    if(j >= Lb_len){
+    else{
         //表示Lb已经全部归并到Lc中
         while(i < La_len){
             ListInsert(Lc, Lc->length + 1, La.elem[i]);
