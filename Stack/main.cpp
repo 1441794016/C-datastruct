@@ -19,7 +19,7 @@ Status InitStack(SqStack & s){
     return OK;
 }
 
-Status Push(SqStack s, ElemType e){
+Status Push(SqStack & s, ElemType e){
     //在栈顶插入新的元素e
     if( (s.top - s.base) >= s.stacksize){
         //存储空间已满需增加分配
@@ -32,12 +32,19 @@ Status Push(SqStack s, ElemType e){
     return OK;
 }
 
-Status Pop(SqStack s, ElemType & e){
-    if(s.top = s.base){
+Status Pop(SqStack & s, ElemType & e){
+    if(s.top == s.base){
         return ERROR;
     }
     s.top--;
     e = * s.top;
+    return OK;
+}
+
+Status GetTop(SqStack s, ElemType & e){
+    if(s.top == s.base)
+        return ERROR;
+    e = *(s.top - 1);
     return OK;
 }
 

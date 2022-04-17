@@ -1,3 +1,5 @@
 # ninja log v5
 0	361	6719056383401706	CMakeFiles/Stack.dir/main.cpp.obj	ff5aa0339e0ca33d
 363	506	6719056384862896	Stack.exe	ebeb0a68419b08cd
+2	365	6719061521802424	CMakeFiles/Stack.dir/main.cpp.obj	ff5aa0339e0ca33d
+365	514	6719061523208359	Stack.exe	ebeb0a68419b08cd
