@@ -42,6 +42,34 @@ Status GetElem(LNode * L, int i, ElemType & e){
     return  OK;
 }
 
+Status ListIncert(LNode * L, int i, ElemType e){
+    //带头结点的单链表中在第i个元素前插入e
+    LNode * s = new LNode;
+    s->data = e;
+    int j = 0;
+    LNode * p = L;
+    while(j < i - 1){
+        p = p->next;
+        j++;
+    }
+    s->next = p->next;
+    p->next = s;
+    return OK;
+}
+
+Status ListTravel(LNode * L, Status(* travel)(ElemType e)){
+    LNode * p = L;
+    while(p->next != NULL){
+        p = p->next;
+        travel(p->data);
+    }
+    return OK;
+}
+
+Status print(ElemType e){
+    std::cout<<e<<std::endl;
+}
+
 int main() {
     LNode * List;
     int n ;
@@ -49,5 +77,7 @@ int main() {
     CreateList(List, n);
     ElemType e;
     GetElem(List, 5, e);
-    std::cout<<e;
+    std::cout<<e<<std::endl;
+    ListIncert(List, 1, 0);
+    ListTravel(List, print);
 }
