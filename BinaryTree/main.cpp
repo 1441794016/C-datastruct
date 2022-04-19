@@ -60,6 +60,17 @@ Status PostOrderTraverse(BinaryTreeNode * T, Status(* traverse)(ElemType e)){
     return OK;
 }
 
+Status CountLeaf(BinaryTreeNode * T, int & count){
+    //统计链表二叉树T的叶子结点的个数
+    if(T) {
+        if ((T->lchild == NULL) && (T->rchild == NULL))
+            count++;
+        CountLeaf(T->lchild, count);
+        CountLeaf(T->rchild, count);
+    }
+    return OK;
+}
+
 Status print(ElemType e){
     std::cout<<e;
 }
@@ -70,4 +81,8 @@ int main() {
     PreOrderTraverse(T,print);
     std::cout<<std::endl;
     InOrderTraverse(T,print);
+    std::cout<<std::endl;
+    int count = 0;
+    CountLeaf(T, count);
+    std::cout<<count;
 }
