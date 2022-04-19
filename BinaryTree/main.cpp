@@ -14,8 +14,8 @@ Status BinaryTreeCreate(BinaryTreeNode * & T){
     //按扩展的先序遍历输入
     ElemType data;
     std::cin>>data;
-    if(data == '&')
-        //输入为& 表示空子树
+    if(data == '.')
+        //输入为. 表示空子树
         T = NULL;
     else{
         //否则就加入新的结点
@@ -40,6 +40,26 @@ Status PreOrderTraverse(BinaryTreeNode * T, Status(*traverse)(ElemType e)){
     return OK;
 }
 
+Status InOrderTraverse(BinaryTreeNode * T, Status(*traverse)(ElemType e)){
+    //中序遍历
+    if(T){
+        InOrderTraverse(T->lchild, traverse);
+        traverse(T->data);
+        InOrderTraverse(T->rchild,traverse);
+    }
+    return OK;
+}
+
+Status PostOrderTraverse(BinaryTreeNode * T, Status(* traverse)(ElemType e)){
+    //后序遍历 LRD
+    if(T){
+        PostOrderTraverse(T->lchild, traverse);
+        PostOrderTraverse(T->rchild,traverse);
+        traverse(T->data);
+    }
+    return OK;
+}
+
 Status print(ElemType e){
     std::cout<<e;
 }
@@ -48,4 +68,6 @@ int main() {
     BinaryTreeNode * T;
     BinaryTreeCreate(T);
     PreOrderTraverse(T,print);
+    std::cout<<std::endl;
+    InOrderTraverse(T,print);
 }
