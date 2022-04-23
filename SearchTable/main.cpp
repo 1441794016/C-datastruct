@@ -30,10 +30,28 @@ int SeqSearch(SSTable T, ElemType key){
     return i;
 }
 
-
+int BinSearch(SSTable T, ElemType key){
+    //折半查找，要求T是有序表
+    int low = 1;
+    int high = T.length;
+    int mid;
+    while(low <= high){
+        mid = (low + high) / 2;
+        if(T.data[mid] == key)
+            return mid;
+        else if(T.data[mid] < key){
+            low = mid + 1;
+            }
+            else{
+            high = mid - 1;
+            }
+    }
+    return 0;
+}
 
 int main() {
     SSTable  T;
     CreateSTable(T, 5);
-    std::cout<<SeqSearch(T, 6);
+    std::cout<<SeqSearch(T, 6)<<std::endl;
+    std::cout<<BinSearch(T, 1)<<std::endl;
 }
